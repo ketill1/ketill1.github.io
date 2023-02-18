@@ -1,4 +1,6 @@
-const openai = new OpenAI(api_key);
+
+let apiKey = "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"
+const openai = new OpenAI(apiKey);
 
 function sendMessage() {
     // Get the user's message from the input field
