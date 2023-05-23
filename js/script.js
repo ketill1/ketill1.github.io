@@ -1,4 +1,4 @@
-
+// https://github.com/openai/openai-node
 const express = require('express');
 const OpenAI = require('openai');
 const app = express();
