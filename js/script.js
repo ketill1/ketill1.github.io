@@ -14,7 +14,7 @@ app.post('/api/chat', async (req, res) => {
   const message = req.body.message;
 
   try {
-    const gptResponse = await openai.complete({
+    const gptResponse = await openai.createCompletion({
       engine: 'davinci',
       prompt: message,
       max_tokens: 150,
@@ -32,3 +32,5 @@ app.post('/api/chat', async (req, res) => {
 });
 
 app.listen(3000, () => console.log('Server started'));
+
+
