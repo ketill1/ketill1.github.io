@@ -1,41 +1,30 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>My Website</title>
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-	<script src=https://unpkg.com/@openai/api@0.7.1/build/openai.min.js></script>
-    <link rel="stylesheet" type="text/css" href="css/style.css" />
-	<script type="text/javascript" src="js/script.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   </head>
   <body>
-    <header>
-      <h1>Start</h1>
-      <nav>
-        <ul>
-          <li><a class="active" href="index.html">Home</a></li>
-          <li><a href="projects.html">Projects</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-      </nav>
-    </header>
-    <main>
-      <section>
-        <h2>Welcome to my website</h2>
-        <p>This is my first website.</p>
-      </section>
-    </main>
-    <div id="chat-window">
-      <div id="output"></div>
-      <input type="text" id="input" placeholder="Type your message here" />
-      <button id="submit">Send</button>
-    </div>
-	<script type="text/javascript" src="js/script.js"></script>
-	  <script type="text/javascript" src="js/functions.js"></script>
-	  <script type="text/javascript" src="js/projectScript.js"></script>
-	  <script type="text/javascript" src="js/envents.js"></script>
-    <footer>
-      <p>Copyright © 2023 My Website</p>
-    </footer>
+    <input id="input" type="text" />
+    <button id="submit">Submit</button>
+    <div id="output"></div>
+    
+    <script>
+      function sendMessage() {
+        const message = $('#input').val();
+
+        $.post('/api/chat', { message })
+         .done(response => {
+           const text = response.text;
+
+           $('#output').append(`<div><strong>You:</strong> ${message}</div>`);
+           $('#output').append(`<div><strong>Chatbot:</strong> ${text}</div>`);
+
+           $('#input').val('');
+         })
+         .fail(() => alert('An error occurred'));
+      }
+
+      $('#submit').on('click', sendMessage);
+    </script>
   </body>
 </html>
