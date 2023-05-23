@@ -7,7 +7,6 @@ const configuration = new Configuration({
 });
 const openai = new OpenAIApi(configuration);
 const app = express();
-const openai = new OpenAI("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");
 
 app.use(express.json());
 
